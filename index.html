@@ -5,41 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Document</title>
+  <title>Foodmap</title>
 </head>
 <body>
-  <!--Activaar geolocacion-->
-  <button onclick="getLocation()">Activar ubicación</button>
-    
-  <p id="demo"></p>
-  <script src="testjava.js"></script>
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="widget_wrap" style="width:320px;height:797px;display:inline-block;"><iframe id="widgetZomato"  style="position:relative;width:100%;height:100%;" border="0" frameborder="0"></iframe></div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div id="mapaHtml" style="width: 100%"></div>
       </div>
     </div>
   </div>
-</div>
-</body> <!-- Modal -->
+  <div> <!--Inicio de contenedor buscador-->
+    <div> <!--Inicio caja buscar-->
+      <p>Busca por nombre del restaurante, ubicación, tipo de cocina o platos...</p>
+      <div><!--div cuidad-->
+        <div><!--input ciudad-->
+          <input type="text" id="city_input" placeholder="Escribe una ubicación..." autocomplete="off">
+        </div> <!--cierre input ciudad-->
+        <div><!--lista resultados-->
+          <ul id="city_results" style="display:none">
+          </ul>
+        </div><!--lista resultados-->
+      </div><!--cierre div cuidad-->
+      <div><!--div buscador-->
+        <div><!--input buscador-->
+          <input type="text" id="search_input" placeholder="Busca restaurante en tu ciudad" autocomplete="off">
+        </div><!--cierre input buscador-->
+        <div><!--div boton-->
+          <button id="searchBtn" class="theme-red-background">Search</button>
+        </div><!--div boton-->
+      </div><!--cierre div buscador-->
+    </div><!--cierre caja buscar-->
+    <div><!--Inicio caja parametros busqueda-->
+      <p> 
+        <!--ciudad donde-->
+      </p>
+      <p>
+        <!--filtro-->
+      </p>
+    </div><!--Fin caja parametros busqueda-->
+    <div><!--Inicio caja resultados-->
+      <div> <!--resultado 1-->
+        <div> <!--imagen resultado 1-->
+
+        </div> 
+        <div><!--info resultado 1 -->
+          <p></p> <!--nombre-->
+          <p></p> <!--direccion-->
+          <p></p> <!--ranking-->
+        </div>
+        <div> <!--boton para expandir el resultado-->
+          <button>
+            <!--modal-->
+          </button>
+        </div>
+      </div>
+    </div><!--Fin caja resultados-->
+  </div>  <!--Cierre de contenedor buscador-->
+  <!--Activaar geolocacion-->
+  <button onclick="getLocation()">Activar ubicación</button>
+  <!--Activaar geolocacion-->   
+  <p id="demo"></p>
+
+  <script data-main="js/config" src="require-2.3.5.js"></script>
+  <script>
+  require(['config'], function() {
+   console.log('hola'); //mi codigo 
+  });
+  </script>
+  </body> 
+  </html> 
+<script src="app.js"></script>  
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
