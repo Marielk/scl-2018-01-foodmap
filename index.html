@@ -13,7 +13,11 @@
   <div> <!--Inicio de contenedor buscador-->
     <div> <!--Inicio caja buscar-->
       <p>Busca por nombre del restaurante, ubicación, tipo de cocina o platos...</p>
+          <!--Activaar geolocacion-->
+      <button onclick="mostrarMapa()">Activar ubicación</button>
       
+      <!--Activaar geolocacion-->   
+     
       <div class="container-fluid"> <!--container de mapa-->
         <div class="row"> <!--row-->
           <div class="col-md-6 offset-md-3"> <!--div mapa-->
@@ -66,18 +70,15 @@
       </div>
     </div><!--Fin caja resultados-->
   </div>  <!--Cierre de contenedor buscador-->
-  <!--Activaar geolocacion-->
-  <button onclick="getLocation()">Activar ubicación</button>
   
-  <!--Activaar geolocacion-->   
-  <p id="demo"></p>
-
+  <!-- <p id="demo"></p> -->
+<!-- 
   <script data-main="js/config" src="require-2.3.5.js"></script>
-  <script>
+  <!-- <script>
   require(['config'], function() {
    console.log('hola'); //mi codigo 
   });
-  </script>
+  </script> --> -->
   </body> 
   </html> 
 <script src="app.js"></script>  
