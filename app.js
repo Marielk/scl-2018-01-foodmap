@@ -1,18 +1,14 @@
+let map;
+let infowindow;
+mostrarMapa()
 var parrafo = document.getElementById("demo");
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         parrafo.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
-function showPosition(position) {
-  let latitud = position.coords.latitude ;
-  let longitud = position.coords.longitude; 
-  const widget = document.getElementById('widgetZomato');
-  widget.src = `https://www.zomato.com/widgets/res_search_widget.php?lat=${latitud}lon=${longitud}&theme=red&sort=popularity`;
-    parrafo.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude; 
 }
 
 function guardarInput(){
@@ -54,13 +50,6 @@ function buscarRestaurant(){
 
 }	
 
-		const renderInfo = (data) => {
-		containerTitle.innerHTML = data.Title;
-		containerYear.innerHTML = data.Year;
-		containerRuntime.innerHTML = data.Runtime;
-		containerImage.innerHTML = `<img src=”${data.Poster}”>`;
-		}
-
 
 
 function mostrarResultado(){
@@ -76,5 +65,52 @@ function mostrarCercanos(){
 }
 
 function mostrarMapa(){
-	
-}
+	// Creamos un mapa con las coordenadas actuales
+	navigator.geolocation.getCurrentPosition(position => {
+		let latitud = position.coords.latitude ;
+  	let longitud = position.coords.longitude; 
+		let currentPosition = new google.maps.LatLng(latitud, longitud);
+ 
+		let mapSettings = {
+			center: currentPosition,
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.MAP
+		};
+ 
+		map = new google.maps.Map(document.getElementById('mapaHtml'), mapSettings);
+ 
+		// Creamos el infowindow
+		infowindow = new google.maps.InfoWindow();
+ 
+		// Especificamos la localización, el radio y el tipo de lugares que queremos obtener
+		let request = {
+			location: currentPosition,
+			radius: 5000,
+			types: ['restaurant'],
+		};
+ 
+		// Creamos el servicio PlaceService y enviamos la petición.
+		let service = new google.maps.places.PlacesService(map);
+ 
+		service.nearbySearch(request, function(results, status) {
+			if (status === google.maps.places.PlacesServiceStatus.OK) {
+				for (let i = 0; i < results.length; i++) {
+					crearMarcador(results[i]);
+				}
+			}
+		});
+	});
+ }
+ function crearMarcador(place) {
+	// Creamos un marcador
+	let marker = new google.maps.Marker({
+		map: map,
+		position: place.geometry.location,
+	});
+
+// Asignamos el evento click del marcador
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent(place.name);
+		infowindow.open(map, this);
+	});
+	}
