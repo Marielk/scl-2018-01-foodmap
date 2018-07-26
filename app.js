@@ -3,6 +3,7 @@
 let map;
 let infowindow;
 let restNames=[];
+let completedRestInfo = [];
 llamarDataRecoleta()
 /*
 var parrafo = document.getElementById("demo");x
@@ -14,10 +15,6 @@ function getLocation() {
     }
 } */
 
-function guardarInput(){
-	let userSearch = document.getElementById('search_input').value; 
-	return userSearch.toLowerCase();
-}
 
 function llamarDataSantiago(){
 	const santiagoJSON = 'data/santiago.json';
@@ -44,9 +41,35 @@ function llamarDataRecoleta(){
 		let arrOfRestaurants = fullData.restaurants;
 		for (let j = 0; j < arrOfRestaurants.length; j++) {
 			restNames.push(arrOfRestaurants[j].restaurant.name);
-		
+			
+						restaurant = {
+							nombre: arrOfRestaurants[j].restaurant.name,
+							url:arrOfRestaurants[j].restaurant.url,
+							ubicacion: {
+								direccion: arrOfRestaurants[j].restaurant.location.address,
+								comuna: arrOfRestaurants[j].restaurant.location.locality
+							},
+						
+							estilo: arrOfRestaurants[j].restaurant.cuisines,
+							costoPromedioPorDos: arrOfRestaurants[j].restaurant.average_cost_for_two,
+							rangoDePrecios: arrOfRestaurants[j].restaurant.price_range, 
+							fotos: arrOfRestaurants[j].restaurant.photos_url,
+							menu: arrOfRestaurants[j].restaurant.menu_url,
+							rating : {
+								puntuacion: arrOfRestaurants[j].restaurant.user_rating.aggregate_rating,
+								calificacion: arrOfRestaurants[j].restaurant.user_rating.rating_text,
+								colorPuntaje: arrOfRestaurants[j].restaurant.user_rating.rating_color,
+								votos: arrOfRestaurants[j].restaurant.user_rating.votes
+							
+							}
+						}
+						completedRestInfo.push(restaurant);
 			}
+			
+			
 	})
+	
+	
 }
 
 
@@ -110,13 +133,63 @@ btnBuscar.addEventListener('click', () => {
 
 let filtrar = () => {
 	let userSearch = document.getElementById('search_input').value; 
-	let restEncontrado = restNames.find(element =>
-	element.toLowerCase() ===	userSearch.toLowerCase());
+
+	let restEncontrado = completedRestInfo.find(element =>
+	element.nombre.toLowerCase() ===	userSearch.toLowerCase());
+
+	let matchName = restNames.find(element =>
+		element.toLowerCase() ===	userSearch.toLowerCase());
 	
 	let mostrarResultado = document.getElementById('result')
-	mostrarResultado.innerHTML = `${restEncontrado}` ;
+	mostrarResultado.innerHTML = `
+	<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			${matchName}
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">${JSON.stringify(restEncontrado.nombre)}</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					
+					<p> Puntuacion: </p> <button type="button" style="background-color:#${JSON.stringify(restEncontrado.rating.colorPuntaje)}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
+          <p> Calificacion: ${JSON.stringify(restEncontrado.rating.calificacion)} </p>                
+					<p> Votos: ${JSON.stringify(restEncontrado.rating.votos)} </p> 
+					<p> Direccion: ${JSON.stringify(restEncontrado.ubicacion.direccion)} </p> 
+					<p> Comuna: ${JSON.stringify(restEncontrado.ubicacion.comuna)} </p> 
+					<p> Estilo: ${JSON.stringify(restEncontrado.estilo)} </p> 
+					<p> Costo promedio por dos: ${JSON.stringify(restEncontrado.costoPromedioPorDos)}</p> 
+					<p> Rango de precios: ${JSON.stringify(restEncontrado.rangoDePrecios)} </p> 
+          <button class="btn btn-success" onclick=mostrar()>Ver más +</button>
+					
+					<div id="verMas" style="display:none"> 
+					<p> Url: <a href=${JSON.stringify(restEncontrado.url)}> ${JSON.stringify(restEncontrado.url)}</a> </p> 
+					<p> Fotos: <a href=${JSON.stringify(restEncontrado.fotos)}> ${JSON.stringify(restEncontrado.fotos)}</a> </p> 
+					<p> Menu: <a href=${JSON.stringify(restEncontrado.menu)}>${JSON.stringify(restEncontrado.menu)}</a> </p> 
+					</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+        ` ;
 		
 
+}
+
+function mostrar(){
+	const masInfo = document.getElementById('verMas');
+	masInfo.style.display = 'block'; 
 }
 
 function mostrarCercanos(){
