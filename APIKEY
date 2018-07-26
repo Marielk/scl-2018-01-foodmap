@@ -1,0 +1,31 @@
+APiKEY
+
+f7f7a4a4a441facbf11975a77711a113
+
+lat -33.4171066
+
+long -70.6395131
+
+entity_type : subzone
+entity_id: 82142
+title : recoleta 
+nearby_res": [
+      "8308707",
+      "8304521",
+      "8304468",
+      "8304465",
+      "8304426",
+      "8304497",
+      "8304490",
+      "8308817",
+      "8304469"
+
+top_cuisines": [
+      "Fast Food",
+      "Sandwich",
+      "Home-made",
+      "Chinese",
+      "Peruvian"
+
+ "subzone": "Recoleta",
+    "subzone_id": 82142,
