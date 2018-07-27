@@ -1,0 +1,83 @@
+
+.contenedor{
+  margin-left: 3%;
+  margin-right: 0%;
+  padding: 2%;
+  text-align: center;
+  width: 45%;
+  background: #F2994A;
+  border-radius: 8px;
+  display: inline-block;
+
+}
+
+#mostrarCercano{
+  
+background: #F2C94C;
+}
+
+#cercanosLista{
+  background: #F2F2F2;
+}
+
+#nombreRes{
+
+  font-family: 'Roboto Mono', monospace;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 9px;
+  
+  color: #EB5757;
+}
+
+#puntajeContainer{
+  margin-left: 60%;
+  margin-bottom: 5%;
+  text-align: center;
+  width: 36px;
+  height: 28px;
+}
+#puntaje{
+  font-size: 12px;
+  
+}
+#comuna{
+  padding-left: 5%;
+  margin: 0%;
+  width: 60px;
+  height: 7px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 6px;
+  color: #828282;
+}
+#tipo{
+  padding-left: 5%;
+  margin: 0%;
+  width: 82px;
+  height: 7px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 6px;
+  
+  color: #333333;
+}
+
+#lista{
+  padding: 0%;
+  text-align: left;
+}
+
+#result{
+  
+}
+#search_input{
+  width: 180px;
+  
+  margin-left: 5%;
+}

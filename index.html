@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
   <title>Foodmap</title>
 </head>
 <body>
@@ -14,7 +17,7 @@
     <div> <!--Inicio caja buscar-->
       <p>Busca por nombre del restaurante, ubicación, tipo de cocina o platos...</p>
           <!--Activaar geolocacion-->
-      <button onclick="mostrarMapa()">Activar ubicación</button>
+      <button class="btn btn-warning" onclick="mostrarMapa()">Activar ubicación</button>
       
       <!--Activaar geolocacion-->   
      
@@ -25,42 +28,20 @@
           </div> <!--div cierre mapa-->
         </div> <!--cierre row-->
       </div> <!--cierre container de mapa-->
-      
-      <div><!--div buscador-->
-        <div><!--input buscador-->
-          <input type="text" id="search_input" placeholder="Busca restaurante en tu ciudad" autocomplete="off">
-        </div><!--cierre input buscador-->
-        <div><!--div boton-->
-          <button id="searchBtn" class="theme-red-background">Search</button>
-        </div><!--div boton-->
-      </div><!--cierre div buscador-->
-    </div><!--cierre caja buscar-->
-    <div><!--Inicio caja parametros busqueda-->
-      <p> 
-        <!--ciudad donde-->
-      </p>
-      <p>
-        <!--filtro-->
-      </p>
-    </div><!--Fin caja parametros busqueda-->
-    <div><!--Inicio caja resultados-->
-      <div> <!--resultado 1-->
-        <div> <!--imagen resultado 1-->
-          <div id="result"></div>
-        </div> 
-        <div><!--info resultado 1 -->
-          <p></p> <!--nombre-->
-          <p></p> <!--direccion-->
-          <p></p> <!--ranking-->
-        </div>
-        <div> <!--boton para expandir el resultado-->
-          <button>
-            <!--modal-->
-          </button>
-        </div>
+      <div id="contenedorCercano" class="container contenedor"><!--div ver cercanos-->
+        <button id="mostrarCercano" class="btn btn-warning" onclick="mostrarCercanos()">Restaurantes Cercanos</button>
+        <div id="cercanosLista"></div>
       </div>
-    </div><!--Fin caja resultados-->
-  </div>  <!--Cierre de contenedor buscador-->
+      <div class="contenedor"><!--div buscador-->
+        <div class="row"><!--input buscador-->
+          <input type="text" id="search_input" placeholder="Busca restaurante en tu ciudad" autocomplete="off">
+          <button id="searchBtn" class="btn btn-warning"><i class="fas fa-search"></i></button>
+        </div><!--cierre input buscador-->        
+        <div><!--Inicio caja resultados-->
+              <div id="result"></div>
+        </div><!--Fin caja resultados-->
+      </div><!--cierre div buscador-->
+  
   
   <!-- <p id="demo"></p> -->
 <!-- 
@@ -69,7 +50,7 @@
   require(['config'], function() {
    console.log('hola'); //mi codigo 
   });
-  </script> --> -->
+  </script> --> 
   </body> 
   </html> 
 <script src="app.js"></script>  

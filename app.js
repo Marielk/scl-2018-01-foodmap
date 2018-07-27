@@ -1,10 +1,10 @@
 
-
+llamarDataRecoleta()
 let map;
 let infowindow;
 let restNames=[];
 let completedRestInfo = [];
-llamarDataRecoleta()
+
 /*
 var parrafo = document.getElementById("demo");x
 function getLocation() {
@@ -63,7 +63,7 @@ function llamarDataRecoleta(){
 							
 							}
 						}
-						completedRestInfo.push(restaurant);
+				completedRestInfo.push(restaurant);
 			}
 			
 			
@@ -143,7 +143,7 @@ let filtrar = () => {
 	let mostrarResultado = document.getElementById('result')
 	mostrarResultado.innerHTML = `
 	<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
 			${matchName}
 		</button>
 
@@ -159,7 +159,7 @@ let filtrar = () => {
 					</div>
 					<div class="modal-body">
 					
-					<p> Puntuacion: </p> <button type="button" style="background-color:#${JSON.stringify(restEncontrado.rating.colorPuntaje)}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
+					<p> Puntuacion: </p> <button type="button" class="btn btn-success" style="background-color:#${JSON.stringify(restEncontrado.rating.colorPuntaje)}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
           <p> Calificacion: ${JSON.stringify(restEncontrado.rating.calificacion)} </p>                
 					<p> Votos: ${JSON.stringify(restEncontrado.rating.votos)} </p> 
 					<p> Direccion: ${JSON.stringify(restEncontrado.ubicacion.direccion)} </p> 
@@ -193,7 +193,79 @@ function mostrar(){
 }
 
 function mostrarCercanos(){
+	const verCercanoBtn = document.getElementById('mostrarCercano');
+	verCercanoBtn.addEventListener('click', () => {
+		imprimirLista();
+	})
+}
+
+function imprimirLista(){
+	const placeToShow = document.getElementById('cercanosLista');
+
+	for (let i in restNames) { //i en este caso son los cursos que hay dentro del objeto userProgress
+		let element = restNames[i];
+		for (let a in completedRestInfo){
+			let restaurant = completedRestInfo[a];
+			if(element === restaurant.nombre){
+				let restEncontrado = restaurant;
+				placeToShow.innerHTML += 
+				`
+				<ul class="list-group">
+				<li id="lista" class="list-group-item" style="display:inline">
+						<button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="nombreRes">${element}</button>
+						<p id="comuna">${JSON.stringify(restEncontrado.ubicacion.comuna)} </p> 
+						<p id="tipo"> Tipo de comida: ${JSON.stringify(restEncontrado.estilo)} </p> 
+						<div id="puntajeContainer" class="container">
+						<button id="puntaje" type="button" class="btn btn-success" style="background-color:#${restEncontrado.rating.colorPuntaje}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
+						<div>
+						
+					</li> 
+				</ul>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">${JSON.stringify(restEncontrado.nombre)}</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+								
+								<p> Puntuacion: </p> <button type="button" class="btn btn-success" style="background-color:#${restEncontrado.rating.colorPuntaje}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
+								<p> Calificacion: ${JSON.stringify(restEncontrado.rating.calificacion)} </p>                
+								<p> Votos: ${JSON.stringify(restEncontrado.rating.votos)} </p> 
+								<p> Direccion: ${JSON.stringify(restEncontrado.ubicacion.direccion)} </p> 
+								<p> Comuna: ${JSON.stringify(restEncontrado.ubicacion.comuna)} </p> 
+								<p> Estilo: ${JSON.stringify(restEncontrado.estilo)} </p> 
+								<p> Costo promedio por dos: ${JSON.stringify(restEncontrado.costoPromedioPorDos)}</p> 
+								<p> Rango de precios: ${JSON.stringify(restEncontrado.rangoDePrecios)} </p> 
+								<button class="btn btn-success" onclick=mostrar()>Ver más +</button>
+								
+								<div id="verMas" style="display:none"> 
+								<p> Url: <a href=${JSON.stringify(restEncontrado.url)}> ${JSON.stringify(restEncontrado.url)}</a> </p> 
+								<p> Fotos: <a href=${JSON.stringify(restEncontrado.fotos)}> ${JSON.stringify(restEncontrado.fotos)}</a> </p> 
+								<p> Menu: <a href=${JSON.stringify(restEncontrado.menu)}>${JSON.stringify(restEncontrado.menu)}</a> </p> 
+								</div>
+			
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+							` 
+
+			}
+		}
+	}
 	
+	restNames.forEach(nombre => {
+		let restEncontrado = completedRestInfo.find(restaurant =>
+		restaurant.nombre ===	nombre);	 
+				});
 }
 
 function mostrarMapa(){
