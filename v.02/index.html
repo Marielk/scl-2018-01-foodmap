@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <title>Foodmap</title>
+</head>
+<body>
+  <h1>FoodMap</h1>
+  </hr>
+  <div> <!--Inicio de contenedor buscador-->
+    <div> <!--Inicio caja buscar-->
+      <p>Busca por nombre del restaurante, ubicación, tipo de cocina o platos...</p>
+          <!--Activaar geolocacion-->
+      <button class="btn btn-warning" onclick="mostrarMapa()">Activar ubicación</button>
+      
+      <!--Activaar geolocacion-->   
+     
+      <div class="container-fluid"> <!--container de mapa-->
+        <div class="row"> <!--row-->
+          <div class="col-md-6 offset-md-3"> <!--div mapa-->
+            <div id="mapaHtml" style="width: 100%; height: 10em;"></div> <!--mostrar mapa html-->
+          </div> <!--div cierre mapa-->
+        </div> <!--cierre row-->
+      </div> <!--cierre container de mapa-->
+      <div id="contenedorCercano" class="container contenedor"><!--div ver cercanos-->
+        <button id="mostrarCercano" class="btn btn-warning" onclick="mostrarCercanos()">Restaurantes Cercanos</button>
+        <div id="cercanosLista"></div>
+      </div>
+      <div class="contenedor"><!--div buscador-->
+        <div class="row"><!--input buscador-->
+          <input type="text" id="search_input" placeholder="Busca restaurante en tu ciudad" autocomplete="off">
+          <button id="searchBtn" class="btn btn-warning"><i class="fas fa-search"></i></button>
+        </div><!--cierre input buscador-->        
+        <div><!--Inicio caja resultados-->
+              <div id="result"></div>
+        </div><!--Fin caja resultados-->
+      </div><!--cierre div buscador-->
+  
+  
+  <!-- <p id="demo"></p> -->
+<!-- 
+  <script data-main="js/config" src="require-2.3.5.js"></script>
+  <!-- <script>
+  require(['config'], function() {
+   console.log('hola'); //mi codigo 
+  });
+  </script> --> 
+  </body> 
+  </html> 
+<script src="app.js"></script>  
+<!-- Google maps -->
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

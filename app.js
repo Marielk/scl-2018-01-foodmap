@@ -202,21 +202,19 @@ function mostrarCercanos(){
 function imprimirLista(){
 	const placeToShow = document.getElementById('cercanosLista');
 
-	for (let i in restNames) { //i en este caso son los cursos que hay dentro del objeto userProgress
-		let element = restNames[i];
-		for (let a in completedRestInfo){
-			let restaurant = completedRestInfo[a];
-			if(element === restaurant.nombre){
-				let restEncontrado = restaurant;
+	for (let i in restNames) { //i en cada uno de la lista de restaurantes cercanos
+		for (let a in completedRestInfo){ //a en cada uno de los elementos restaurant completos
+			if(restNames[i] === completedRestInfo[a].nombre){
+				let verDatos = completedRestInfo[a];
 				placeToShow.innerHTML += 
 				`
 				<ul class="list-group">
 				<li id="lista" class="list-group-item" style="display:inline">
-						<button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="nombreRes">${element}</button>
-						<p id="comuna">${JSON.stringify(restEncontrado.ubicacion.comuna)} </p> 
-						<p id="tipo"> Tipo de comida: ${JSON.stringify(restEncontrado.estilo)} </p> 
+						<button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" id="nombreRes">${verDatos.nombre}</button>
+						<p id="comuna">${JSON.stringify(verDatos.ubicacion.comuna)} </p> 
+						<p id="tipo"> Tipo de comida: ${JSON.stringify(verDatos.estilo)} </p> 
 						<div id="puntajeContainer" class="container">
-						<button id="puntaje" type="button" class="btn btn-success" style="background-color:#${restEncontrado.rating.colorPuntaje}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
+						<button id="puntaje" type="button" class="btn btn-success" style="background-color:#${verDatos.rating.colorPuntaje}">${JSON.stringify(verDatos.rating.puntuacion)}</button>
 						<div>
 						
 					</li> 
@@ -226,27 +224,27 @@ function imprimirLista(){
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">${JSON.stringify(restEncontrado.nombre)}</h5>
+									<h5 class="modal-title" id="exampleModalLabel">${JSON.stringify(verDatos.nombre)}</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
 								
-								<p> Puntuacion: </p> <button type="button" class="btn btn-success" style="background-color:#${restEncontrado.rating.colorPuntaje}">${JSON.stringify(restEncontrado.rating.puntuacion)}</button>
-								<p> Calificacion: ${JSON.stringify(restEncontrado.rating.calificacion)} </p>                
-								<p> Votos: ${JSON.stringify(restEncontrado.rating.votos)} </p> 
-								<p> Direccion: ${JSON.stringify(restEncontrado.ubicacion.direccion)} </p> 
-								<p> Comuna: ${JSON.stringify(restEncontrado.ubicacion.comuna)} </p> 
-								<p> Estilo: ${JSON.stringify(restEncontrado.estilo)} </p> 
-								<p> Costo promedio por dos: ${JSON.stringify(restEncontrado.costoPromedioPorDos)}</p> 
-								<p> Rango de precios: ${JSON.stringify(restEncontrado.rangoDePrecios)} </p> 
+								<p> Puntuacion: </p> <button type="button" class="btn btn-success" style="background-color:#${verDatos.rating.colorPuntaje}">${JSON.stringify(verDatos.rating.puntuacion)}</button>
+								<p> Calificacion: ${JSON.stringify(verDatos.rating.calificacion)} </p>                
+								<p> Votos: ${JSON.stringify(verDatos.rating.votos)} </p> 
+								<p> Direccion: ${JSON.stringify(verDatos.ubicacion.direccion)} </p> 
+								<p> Comuna: ${JSON.stringify(verDatos.ubicacion.comuna)} </p> 
+								<p> Estilo: ${JSON.stringify(verDatos.estilo)} </p> 
+								<p> Costo promedio por dos: ${JSON.stringify(verDatos.costoPromedioPorDos)}</p> 
+								<p> Rango de precios: ${JSON.stringify(verDatos.rangoDePrecios)} </p> 
 								<button class="btn btn-success" onclick=mostrar()>Ver más +</button>
 								
 								<div id="verMas" style="display:none"> 
-								<p> Url: <a href=${JSON.stringify(restEncontrado.url)}> ${JSON.stringify(restEncontrado.url)}</a> </p> 
-								<p> Fotos: <a href=${JSON.stringify(restEncontrado.fotos)}> ${JSON.stringify(restEncontrado.fotos)}</a> </p> 
-								<p> Menu: <a href=${JSON.stringify(restEncontrado.menu)}>${JSON.stringify(restEncontrado.menu)}</a> </p> 
+								<p> Url: <a href=${JSON.stringify(verDatos.url)}> ${JSON.stringify(verDatos.url)}</a> </p> 
+								<p> Fotos: <a href=${JSON.stringify(verDatos.fotos)}> ${JSON.stringify(verDatos.fotos)}</a> </p> 
+								<p> Menu: <a href=${JSON.stringify(verDatos.menu)}>${JSON.stringify(verDatos.menu)}</a> </p> 
 								</div>
 			
 								</div>
