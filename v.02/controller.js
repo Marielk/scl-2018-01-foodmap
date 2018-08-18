@@ -1,28 +1,33 @@
+window.controller = {};
 
-windows.showTop10 = (comuna) => {
-  let top10 = windows.model.getTop10(comuna);
-  windows.view.printTop10(top10);
+let comuna;
+
+window.controller.getComuna = (selecID) =>{
+  comuna = selecID;
+  window.controller.showTop10(comuna);
 };
 
-windows.showOptions = () => {
-  let options = windows.model.getOptions();
-  windows.view.printOptions(options);
+
+window.controller.showTop10 = (comuna) => {
+  window.model.getTop10(comuna);
+  
 };
 
-windows.chooseOption = (option) => {
-  let optionChoosen = windows.model.getResult(option);
-  windows.view.printResults(optionChoosen);
+window.showOptions = () => {
+  let options = window.model.getOptions();
+  window.view.printOptions(options);
+};
+
+window.chooseOption = (option) => {
+  let optionChoosen = window.model.getResult(option);
+  window.view.printResults(optionChoosen);
   function order(ASC){
-    let result = windows.model.orderResults(ASC);
-    windows.view.printResultsOrdered(result);
+    let result = window.model.orderResults(ASC);
+    window.view.printResultsOrdered(result);
   }  
 };
 
-windows.chooseRestaurant = (restaurant) => {
-  let foundRestaurant = windows.model.getRestaurant(restaurant);
-  windows.view.printRestaurant(foundRestaurant);
+window.chooseRestaurant = (restaurant) => {
+  let foundRestaurant = window.model.getRestaurant(restaurant);
+  window.view.printRestaurant(foundRestaurant);
 };
-
-windows.closeModal = () =>{
-  windows.view.printClose(); 
-}
